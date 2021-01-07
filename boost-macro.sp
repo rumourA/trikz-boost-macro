@@ -62,7 +62,7 @@ Action timer_join(Handle timer, any data)
 {
 	CPrintToChat(data, "{white}[{violet}Macro{white}] - To use server-side macro bind any key to +macro.");
 	CPrintToChat(data, "{white}To set the repetition delay use !macro_delay #. (current: %d ticks)", macro_repeat_delay[data]);
-	CPrintToChat(data, "{white}The delay is the amount of ticks to wait upon landing on the ground (2-15) recommended."
+	CPrintToChat(data, "{white}The delay is the amount of ticks to wait upon landing on the ground (2-15) recommended.");
 }
 
 void SetCookie(int client, Handle cookie, int n)
