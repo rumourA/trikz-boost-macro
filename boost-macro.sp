@@ -22,7 +22,7 @@ public Plugin myinfo =
 {
 	name = "boost macro",
 	author = "rumour",
-	description = "serverside macro",
+	description = "server-side macro",
 	version = "2.0",
 	url = ""
 };
@@ -33,7 +33,7 @@ public void OnPluginStart()
 	RegConsoleCmd("-macro", minus_macro, "Jumps after throwing the flashbang for max gainz.");
 	RegConsoleCmd("sm_macro_delay", sm_macro_delay, "Sets the delay of the repeat for the client.");
 	
-	macro_delay_cookie = RegClientCookie("macro_delay", "macro delay", CookieAccess_Protected);
+	macro_delay_cookie = RegClientCookie("macro_delay", "macro_delay", CookieAccess_Protected);
 	
 	// Late loading
 	for(int i = 1; i <= MaxClients; i++)
@@ -47,7 +47,10 @@ public void OnPluginStart()
 
 public void OnClientPutInServer(int client)
 {
-	CreateTimer(1.5, timer_join, client);
+	if(!IsFakeClient(client))
+	{
+		CreateTimer(1.5, timer_join, client);
+	}	
 }
 
 public void OnClientDisconnect(int client)
@@ -59,6 +62,7 @@ Action timer_join(Handle timer, any data)
 {
 	CPrintToChat(data, "{white}[{violet}Macro{white}] - To use server-side macro bind any key to +macro.");
 	CPrintToChat(data, "{white}To set the repetition delay use !macro_delay #. (current: %d ticks)", macro_repeat_delay[data]);
+	CPrintToChat(data, "{white}The delay is the amount of ticks to wait upon landing on the ground (2-15) recommended."
 }
 
 void SetCookie(int client, Handle cookie, int n)
